@@ -2,6 +2,8 @@
 
 Provides current time for runtime and controllable time for testing
 
+[PSR-20](https://www.php-fig.org/psr/psr-20/) compatible
+
 ## Content
 
 - [Setup](#setup)
@@ -31,7 +33,7 @@ ClockHolder::setClock($clock);
 
 ## Clock usage
 
-Request `Clock` interface and get current time
+Request `Clock` interface and get current time (or `Psr\Clock\ClockInterface` for `psr/clock` compatibility)
 
 ```php
 use Orisai\Clock\Clock;

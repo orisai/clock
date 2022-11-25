@@ -9,6 +9,10 @@
 </p>
 
 <p align="center">
+	<a href="https://www.php-fig.org/psr/psr-20/">PSR-20</a> compatible
+</p>
+
+<p align="center">
 	📄 Check out our <a href="docs/README.md">documentation</a>.
 </p>
 
