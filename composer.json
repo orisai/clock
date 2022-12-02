@@ -6,6 +6,7 @@
 		"datetime",
 		"clock",
 		"orisai",
+		"psr",
 		"psr-20",
 		"time"
 	],
