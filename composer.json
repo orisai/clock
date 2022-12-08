@@ -23,14 +23,14 @@
 		"psr/clock-implementation": "1.0"
 	},
 	"require": {
-		"php": ">=7.4.0 <8.2.0",
+		"php": ">=7.4.0 <8.3.0",
 		"orisai/exceptions": "^1.0.0",
 		"psr/clock": "^1.0.0"
 	},
 	"require-dev": {
 		"brianium/paratest": "^6.3.0",
 		"infection/infection": "^0.26.0",
-		"orisai/coding-standard": "^2.0.0",
+		"orisai/coding-standard": "^3.0.0",
 		"phpstan/extension-installer": "^1.0.0",
 		"phpstan/phpstan": "^1.0.0",
 		"phpstan/phpstan-deprecation-rules": "^1.0.0",

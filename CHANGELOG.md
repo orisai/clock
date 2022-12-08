@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased](https://github.com/orisai/clock/compare/1.1.0...HEAD)
 
+- Composer
+	- allows PHP 8.2
+
 ## [1.1.0](https://github.com/orisai/clock/compare/1.0.0...1.1.0) - 2022-11-25
 
 - [PSR-20](https://www.php-fig.org/psr/psr-20/) compatibility
