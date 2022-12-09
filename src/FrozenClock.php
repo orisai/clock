@@ -32,8 +32,8 @@ final class FrozenClock implements Clock
 		[$wholeSeconds, $microseconds] = $this->getParts($seconds);
 
 		$this->dt = $this->dt
-			->modify("+$wholeSeconds sec")
-			->modify("+$microseconds usec");
+			->modify("$wholeSeconds sec")
+			->modify("$microseconds usec");
 	}
 
 	/**
