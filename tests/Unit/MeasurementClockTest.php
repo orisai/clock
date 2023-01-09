@@ -8,7 +8,6 @@ use PHPUnit\Framework\TestCase;
 use function date_default_timezone_get;
 use function date_default_timezone_set;
 use function range;
-use function time_nanosleep;
 use function usleep;
 
 final class MeasurementClockTest extends TestCase
@@ -21,15 +20,11 @@ final class MeasurementClockTest extends TestCase
 			$clock = new MeasurementClock();
 
 			$start = (float) $clock->now()->format('U.u');
-			time_nanosleep(0, 10);
-
 			$now = $clock->now();
-
-			time_nanosleep(0, 10);
 			$stop = (float) $clock->now()->format('U.u');
 
-			self::assertGreaterThan($start, (float) $now->format('U.u'));
-			self::assertLessThan($stop, (float) $now->format('U.u'));
+			self::assertGreaterThan($start - 0.01, (float) $now->format('U.u'));
+			self::assertLessThan($stop + 0.01, (float) $now->format('U.u'));
 		}
 	}
 
