@@ -12,6 +12,7 @@ Provides current time for runtime and controllable time for testing
 - [System clock](#system-clock)
 - [Frozen clock](#frozen-clock)
 - [Measurement clock](#measurement-clock)
+- [Integrations and extensions](#integrations-and-extensions)
 
 ## Setup
 
@@ -134,3 +135,7 @@ use DateTimeZone;
 
 $clock = new MeasurementClock(new DateTimeZone('UTC'));
 ```
+
+## Integrations and extensions
+
+- [Nette](https://github.com/nette) integration - [orisai/nette-clock](https://github.com/orisai/nette-clock)
