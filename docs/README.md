@@ -9,9 +9,10 @@ Provides current time for runtime and controllable time for testing
 - [Setup](#setup)
 - [Clock usage](#clock-usage)
 - [Shortcut function](#shortcut-function)
-- [System clock](#system-clock)
-- [Frozen clock](#frozen-clock)
-- [Measurement clock](#measurement-clock)
+- [Clock](#clock-1)
+	- [System clock](#system-clock)
+	- [Frozen clock](#frozen-clock)
+	- [Measurement clock](#measurement-clock)
 - [Integrations and extensions](#integrations-and-extensions)
 
 ## Setup
@@ -67,7 +68,9 @@ use function Orisai\Clock\now;
 $currentTime = now(); // \DateTimeImmutable
 ```
 
-## System clock
+## Clock
+
+### System clock
 
 For standard usage in application runtime. Returns same time as `new DateTimeImmutable('now')` would.
 
@@ -85,7 +88,7 @@ use DateTimeZone;
 $clock = new SystemClock(new DateTimeZone('UTC'));
 ```
 
-## Frozen clock
+### Frozen clock
 
 For testing exact times. Does not change unless explicitly requested.
 
@@ -117,7 +120,7 @@ use DateTimeZone;
 $clock = new FrozenClock(0, new DateTimeZone('UTC'));
 ```
 
-## Measurement clock
+### Measurement clock
 
 For accurate measurement of time. Unlike standard [system clock](#system-clock) is not affected by clock drifting
 (which is wanted for normal usage, but makes time measuring unreliable).
