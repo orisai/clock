@@ -7,6 +7,7 @@ use Orisai\Clock\FrozenClock;
 use PHPUnit\Framework\TestCase;
 use function date_default_timezone_get;
 use function date_default_timezone_set;
+use function error_get_last;
 use function usleep;
 
 final class FrozenClockTest extends TestCase
@@ -124,6 +125,56 @@ final class FrozenClockTest extends TestCase
 		$clock->move(-1.1);
 		$now = $clock->now()->format('U.u');
 		self::assertSame('10.990002', $now);
+	}
+
+	public function testSleep(): void
+	{
+		$clock = new FrozenClock(10);
+
+		self::assertSame(
+			'10.000000',
+			$clock->now()->format('U.u'),
+		);
+
+		$clock->sleep(1);
+		self::assertSame(
+			'11.000000',
+			$clock->now()->format('U.u'),
+		);
+
+		$clock->sleep(0, 2);
+		self::assertSame(
+			'11.002000',
+			$clock->now()->format('U.u'),
+		);
+
+		$clock->sleep(0, 0, 3);
+		self::assertSame(
+			'11.002003',
+			$clock->now()->format('U.u'),
+		);
+
+		$clock->sleep(3, 2, 1);
+		self::assertSame(
+			'14.004004',
+			$clock->now()->format('U.u'),
+		);
+	}
+
+	public function testSleepNoArgs(): void
+	{
+		$clock = new FrozenClock(0);
+
+		@$clock->sleep();
+
+		self::assertSame(
+			'Arguments must be passed to method sleep(), otherwise it does not do anything.',
+			error_get_last()['message'] ?? null,
+		);
+		self::assertSame(
+			'0.000000',
+			$clock->now()->format('U.u'),
+		);
 	}
 
 }

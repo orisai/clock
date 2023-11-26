@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 ## [Unreleased](https://github.com/orisai/clock/compare/1.1.1...HEAD)
 
+### Added
+
+- `Clock` interface has a `sleep()` method
+
 ## [1.1.1](https://github.com/orisai/clock/compare/1.1.0...1.1.1) - 2022-12-09
 
 ### Changed

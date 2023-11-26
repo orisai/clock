@@ -7,7 +7,8 @@ Provides current time for runtime and controllable time for testing
 ## Content
 
 - [Setup](#setup)
-- [Clock usage](#clock-usage)
+- [Current time](#current-time)
+- [Sleep](#sleep)
 - [Shortcut function](#shortcut-function)
 - [Clock](#clock-1)
 	- [System clock](#system-clock)
@@ -33,7 +34,7 @@ $clock = new SystemClock();
 ClockHolder::setClock($clock);
 ```
 
-## Clock usage
+## Current time
 
 Request `Clock` interface and get current time (or `Psr\Clock\ClockInterface` for `psr/clock` compatibility)
 
@@ -56,6 +57,24 @@ class ExampleService
 	}
 
 }
+```
+
+## Sleep
+
+To prevent waiting periods in tests, replace calls to `sleep()` and `usleep()` functions with `Clock->sleep()` method.
+
+```php
+$clock->sleep(
+	1, // Seconds
+	2, // Milliseconds
+	3, // Microseconds
+);
+```
+
+Or with named arguments, just:
+
+```php
+$clock->sleep(microseconds: 10);
 ```
 
 ## Shortcut function
@@ -119,6 +138,8 @@ use DateTimeZone;
 
 $clock = new FrozenClock(0, new DateTimeZone('UTC'));
 ```
+
+[Sleeping](#sleep) does not put thread to sleep but just moves timestamp of clock's internal `DateTimeImmutable`.
 
 ### Measurement clock
 

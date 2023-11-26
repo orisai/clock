@@ -1,0 +1,21 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Cannot call method setTimezone\\(\\) on DateTimeImmutable\\|false\\.$#"
+			count: 1
+			path: ../src/FrozenClock.php
+
+		-
+			message: "#^Property Orisai\\\\Clock\\\\FrozenClock\\:\\:\\$dt \\(DateTimeImmutable\\) does not accept \\(DateTimeImmutable\\|false\\)\\.$#"
+			count: 5
+			path: ../src/FrozenClock.php
+
+		-
+			message: "#^Cannot call method setTimezone\\(\\) on DateTimeImmutable\\|false\\.$#"
+			count: 1
+			path: ../src/MeasurementClock.php
+
+		-
+			message: "#^Method Orisai\\\\Clock\\\\MeasurementClock\\:\\:now\\(\\) should return DateTimeImmutable but returns \\(DateTimeImmutable\\|false\\)\\.$#"
+			count: 1
+			path: ../src/MeasurementClock.php

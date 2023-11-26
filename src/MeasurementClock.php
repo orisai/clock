@@ -11,6 +11,8 @@ use function hrtime;
 final class MeasurementClock implements Clock
 {
 
+	use SystemSleepClock;
+
 	private DateTimeZone $timeZone;
 
 	private int $secondsOffset;

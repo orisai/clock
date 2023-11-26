@@ -19,9 +19,3 @@ parameters:
 			tooWideThrowType: true
 		checkedExceptionClasses:
 			- Orisai\Exceptions\Check\CheckedException
-
-	ignoreErrors:
-		-
-			message: '#^(.+)DateTimeImmutable\|false(.+)$#'
-			path: ../src
-			count: 5

@@ -9,6 +9,8 @@ use function date_default_timezone_get;
 final class SystemClock implements Clock
 {
 
+	use SystemSleepClock;
+
 	private DateTimeZone $timeZone;
 
 	public function __construct(?DateTimeZone $timeZone = null)

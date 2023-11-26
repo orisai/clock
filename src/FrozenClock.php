@@ -6,7 +6,10 @@ use DateTimeImmutable;
 use DateTimeZone;
 use function date_default_timezone_get;
 use function floor;
+use function func_get_args;
 use function round;
+use function trigger_error;
+use const E_USER_WARNING;
 
 final class FrozenClock implements Clock
 {
@@ -19,7 +22,7 @@ final class FrozenClock implements Clock
 
 		$this->dt = DateTimeImmutable::createFromFormat('U', (string) $seconds)
 			->setTimezone($timeZone ?? new DateTimeZone(date_default_timezone_get()))
-			->modify("+$microseconds usec");
+			->modify("+$microseconds microsecond");
 	}
 
 	public function now(): DateTimeImmutable
@@ -32,8 +35,37 @@ final class FrozenClock implements Clock
 		[$wholeSeconds, $microseconds] = $this->getParts($seconds);
 
 		$this->dt = $this->dt
-			->modify("$wholeSeconds sec")
-			->modify("$microseconds usec");
+			->modify("$wholeSeconds second")
+			->modify("$microseconds microsecond");
+	}
+
+	/**
+	 * @infection-ignore-all
+	 */
+	public function sleep(
+		int $seconds = 0,
+		int $milliseconds = 0,
+		int $microseconds = 0
+	): void
+	{
+		if (func_get_args() === []) {
+			trigger_error(
+				'Arguments must be passed to method sleep(), otherwise it does not do anything.',
+				E_USER_WARNING,
+			);
+		}
+
+		if ($seconds > 0) {
+			$this->dt = $this->dt->modify("$seconds second");
+		}
+
+		if ($milliseconds > 0) {
+			$this->dt = $this->dt->modify("$milliseconds millisecond");
+		}
+
+		if ($microseconds > 0) {
+			$this->dt = $this->dt->modify("$microseconds microsecond");
+		}
 	}
 
 	/**

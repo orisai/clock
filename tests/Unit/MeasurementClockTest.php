@@ -7,6 +7,7 @@ use Orisai\Clock\MeasurementClock;
 use PHPUnit\Framework\TestCase;
 use function date_default_timezone_get;
 use function date_default_timezone_set;
+use function error_get_last;
 use function range;
 use function usleep;
 
@@ -52,6 +53,42 @@ final class MeasurementClockTest extends TestCase
 
 		$clock = new MeasurementClock(new DateTimeZone('Europe/Prague'));
 		self::assertSame('Europe/Prague', $clock->now()->getTimezone()->getName());
+	}
+
+	public function testSleep(): void
+	{
+		$clock = new MeasurementClock();
+		$initTime = (float) $clock->now()->format('U.u');
+
+		$clock->sleep(1);
+		self::assertGreaterThan(
+			$initTime + 1,
+			(float) $clock->now()->format('U.u'),
+		);
+
+		$clock->sleep(0, 10);
+		self::assertGreaterThan(
+			$initTime + 0.010,
+			(float) $clock->now()->format('U.u'),
+		);
+
+		$clock->sleep(0, 0, 1_000);
+		self::assertGreaterThan(
+			$initTime + 0.010,
+			(float) $clock->now()->format('U.u'),
+		);
+	}
+
+	public function testSleepNoArgs(): void
+	{
+		$clock = new MeasurementClock();
+
+		@$clock->sleep();
+
+		self::assertSame(
+			'Arguments must be passed to method sleep(), otherwise it does not do anything.',
+			error_get_last()['message'] ?? null,
+		);
 	}
 
 }
