@@ -83,6 +83,10 @@ jobs:
       - name: "Composer"
         uses: "orisai/github-workflows/.github/actions/setup-composer@v1"
 
+      - name: "Extra dependencies"
+        if: "!startsWith(matrix.php-version, '7') && !startsWith(matrix.php-version, '8.0')"
+        run: "composer require symfony/clock"
+
       - name: "PHPStan"
         uses: "orisai/github-workflows/.github/actions/phpstan@v1"
         with:
@@ -129,6 +133,10 @@ jobs:
         uses: "orisai/github-workflows/.github/actions/setup-composer@v1"
         with:
           command: "composer update --no-interaction --no-progress --prefer-dist ${{ matrix.composer-flags }}"
+
+      - name: "Extra dependencies"
+        if: "!startsWith(matrix.php-version, '7') && !startsWith(matrix.php-version, '8.0')"
+        run: "composer require symfony/clock"
 
       - name: "PHPUnit"
         uses: "orisai/github-workflows/.github/actions/phpunit@v1"
@@ -197,6 +205,10 @@ jobs:
 
       - name: "Composer"
         uses: "orisai/github-workflows/.github/actions/setup-composer@v1"
+
+      - name: "Extra dependencies"
+        if: "!startsWith(matrix.php-version, '7') && !startsWith(matrix.php-version, '8.0')"
+        run: "composer require symfony/clock"
 
       - name: "PHPUnit"
         uses: "orisai/github-workflows/.github/actions/phpunit@v1"

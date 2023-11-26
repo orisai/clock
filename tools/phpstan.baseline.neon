@@ -27,3 +27,8 @@ parameters:
 			"""
 			count: 9
 			path: ../tests/Unit/FrozenClockTest.php
+
+		-
+			message: "#^Parameter \\#1 \\$now of class Symfony\\\\Component\\\\Clock\\\\MockClock constructor expects DateTimeImmutable\\|string, DateTimeImmutable\\|false given\\.$#"
+			count: 2
+			path: ../tests/Unit/Adapter/SymfonyToOrisaiClockAdapterTest.php

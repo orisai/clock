@@ -15,6 +15,7 @@ Provides current time for runtime and controllable time for testing
 	- [Frozen clock](#frozen-clock)
 	- [Measurement clock](#measurement-clock)
 	- [PSR to Orisai clock adapter](#psr-to-orisai-clock-adapter)
+	- [Symfony to Orisai clock adapter](#symfony-to-orisai-clock-adapter)
 - [Integrations and extensions](#integrations-and-extensions)
 
 ## Setup
@@ -159,7 +160,16 @@ use Orisai\Clock\Adapter\PsrToOrisaiClockAdapter;
 $clock = new PsrToOrisaiClockAdapter(new ExamplePsrClock());
 ```
 
-[Sleep](#sleep) uses standard `sleep()` function for non-Orisai clock implementation.
+### Symfony to Orisai clock adapter
+
+Decorate any `Symfony\Component\Clock\ClockInterface` implementation to conform interface `Orisai\Clock\Clock`.
+
+```php
+use Orisai\Clock\Adapter\SymfonyToOrisaiClockAdapter;
+use Symfony\Component\Clock\NativeClock;
+
+$clock = new SymfonyToOrisaiClockAdapter(new NativeClock());
+```
 
 ## Integrations and extensions
 
