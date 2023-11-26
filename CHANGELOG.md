@@ -10,6 +10,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 ### Added
 
 - `Clock` interface has a `sleep()` method
+- `PsrToOrisaiClockAdapter` - makes any PSR clock compatible with `Orisai\Clock\Clock`
 
 ### Changed
 

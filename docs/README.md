@@ -14,6 +14,7 @@ Provides current time for runtime and controllable time for testing
 	- [System clock](#system-clock)
 	- [Frozen clock](#frozen-clock)
 	- [Measurement clock](#measurement-clock)
+	- [PSR to Orisai clock adapter](#psr-to-orisai-clock-adapter)
 - [Integrations and extensions](#integrations-and-extensions)
 
 ## Setup
@@ -147,6 +148,18 @@ use DateTimeZone;
 
 $clock = new MeasurementClock(new DateTimeZone('UTC'));
 ```
+
+### PSR to Orisai clock adapter
+
+Decorate any `Psr\Clock\ClockInterface` implementation to conform interface `Orisai\Clock\Clock`.
+
+```php
+use Orisai\Clock\Adapter\PsrToOrisaiClockAdapter;
+
+$clock = new PsrToOrisaiClockAdapter(new ExamplePsrClock());
+```
+
+[Sleep](#sleep) uses standard `sleep()` function for non-Orisai clock implementation.
 
 ## Integrations and extensions
 
