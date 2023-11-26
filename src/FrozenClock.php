@@ -30,6 +30,9 @@ final class FrozenClock implements Clock
 		return clone $this->dt;
 	}
 
+	/**
+	 * @deprecated Method move() will be removed in orisai/clock v2.0. Use method sleep() instead.
+	 */
 	public function move(float $seconds): void
 	{
 		[$wholeSeconds, $microseconds] = $this->getParts($seconds);

@@ -11,6 +11,10 @@ and this project adheres to [Semantic Versioning](http://semver.org/spec/v2.0.0.
 
 - `Clock` interface has a `sleep()` method
 
+### Changed
+
+- `FrozenClock` - method `move()` is deprecated, use method `sleep()` instead
+
 ## [1.1.1](https://github.com/orisai/clock/compare/1.1.0...1.1.1) - 2022-12-09
 
 ### Changed

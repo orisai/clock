@@ -119,18 +119,6 @@ $clock = new FrozenClock($timestamp);
 $clock->now()->format('U.u'); // 0.000_000
 ```
 
-Move in time (with microsecond accuracy)
-
-```php
-$timestamp = 42.333;
-$clock = new FrozenClock($timestamp);
-$clock->now()->format('U.u'); // 42.333_000 ($timestamp)
-
-$move = 624.333_666;
-$clock->move($move);
-$clock->now()->getTimestamp(); // 666.666_666 ($timestamp + $move)
-```
-
 Specify timezone (otherwise current timezone is used)
 
 ```php

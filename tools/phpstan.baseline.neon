@@ -19,3 +19,11 @@ parameters:
 			message: "#^Method Orisai\\\\Clock\\\\MeasurementClock\\:\\:now\\(\\) should return DateTimeImmutable but returns \\(DateTimeImmutable\\|false\\)\\.$#"
 			count: 1
 			path: ../src/MeasurementClock.php
+
+		-
+			message: """
+				#^Call to deprecated method move\\(\\) of class Orisai\\\\Clock\\\\FrozenClock\\:
+				Method move\\(\\) will be removed in orisai/clock v2\\.0\\. Use method sleep\\(\\) instead\\.$#
+			"""
+			count: 9
+			path: ../tests/Unit/FrozenClockTest.php
