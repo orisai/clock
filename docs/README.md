@@ -14,6 +14,7 @@ Provides current time for runtime and controllable time for testing
 	- [System clock](#system-clock)
 	- [Frozen clock](#frozen-clock)
 	- [Measurement clock](#measurement-clock)
+- [Clock adapters](#clock-adapters)
 	- [PSR to Orisai clock adapter](#psr-to-orisai-clock-adapter)
 	- [Symfony to Orisai clock adapter](#symfony-to-orisai-clock-adapter)
 - [Integrations and extensions](#integrations-and-extensions)
@@ -148,6 +149,21 @@ Specify timezone (otherwise current timezone is used)
 use DateTimeZone;
 
 $clock = new MeasurementClock(new DateTimeZone('UTC'));
+```
+
+## Clock adapters
+
+Use `ClockAdapterFactory` to automatically create the best adapter for `Orisai\Clock\Clock` compatibility from
+your `Psr\Clock\ClockInterface`.
+
+- It creates no adapter for `Orisai\Clock\Clock` instance and just returns it
+- It prefers Symfony adapter over PSR adapter for `sleep()` method compatibility
+
+```php
+use Orisai\Clock\Adapter\ClockAdapterFactory;
+use Symfony\Component\Clock\NativeClock;
+
+$clock = ClockAdapterFactory::create($somePsrCompatibleClock);
 ```
 
 ### PSR to Orisai clock adapter
