@@ -2,7 +2,9 @@
 
 namespace Orisai\Clock;
 
+use DateTime;
 use DateTimeImmutable;
+use DateTimeInterface;
 use DateTimeZone;
 use function date_default_timezone_get;
 use function floor;
@@ -16,13 +18,22 @@ final class FrozenClock implements Clock
 
 	private DateTimeImmutable $dt;
 
-	public function __construct(float $timestamp, ?DateTimeZone $timeZone = null)
+	/**
+	 * @param float|DateTimeInterface $timestamp
+	 */
+	public function __construct($timestamp, ?DateTimeZone $timeZone = null)
 	{
-		[$seconds, $microseconds] = $this->getParts($timestamp);
+		if ($timestamp instanceof DateTime) {
+			$dt = DateTimeImmutable::createFromMutable($timestamp);
+		} elseif ($timestamp instanceof DateTimeImmutable) {
+			$dt = $timestamp;
+		} else {
+			[$seconds, $microseconds] = $this->getParts($timestamp);
+			$dt = DateTimeImmutable::createFromFormat('U', (string) $seconds)
+				->modify("+$microseconds microsecond");
+		}
 
-		$this->dt = DateTimeImmutable::createFromFormat('U', (string) $seconds)
-			->setTimezone($timeZone ?? new DateTimeZone(date_default_timezone_get()))
-			->modify("+$microseconds microsecond");
+		$this->dt = $dt->setTimezone($timeZone ?? new DateTimeZone(date_default_timezone_get()));
 	}
 
 	public function now(): DateTimeImmutable

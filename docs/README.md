@@ -130,6 +130,17 @@ use DateTimeZone;
 $clock = new FrozenClock(0, new DateTimeZone('UTC'));
 ```
 
+You can also create clock from datetime
+
+```php
+use DateTime;
+use DateTimeImmutable;
+
+$clock = new FrozenClock(new DateTimeImmutable());
+// or
+$clock = new FrozenClock(new DateTime());
+```
+
 [Sleeping](#sleep) does not put thread to sleep but just moves timestamp of clock's internal `DateTimeImmutable`.
 
 ### Measurement clock

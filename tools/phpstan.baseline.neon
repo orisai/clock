@@ -1,13 +1,13 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Cannot call method setTimezone\\(\\) on DateTimeImmutable\\|false\\.$#"
+			message: "#^Cannot call method modify\\(\\) on DateTimeImmutable\\|false\\.$#"
 			count: 1
 			path: ../src/FrozenClock.php
 
 		-
 			message: "#^Property Orisai\\\\Clock\\\\FrozenClock\\:\\:\\$dt \\(DateTimeImmutable\\) does not accept \\(DateTimeImmutable\\|false\\)\\.$#"
-			count: 5
+			count: 4
 			path: ../src/FrozenClock.php
 
 		-
@@ -21,14 +21,14 @@ parameters:
 			path: ../src/MeasurementClock.php
 
 		-
+			message: "#^Parameter \\#1 \\$now of class Symfony\\\\Component\\\\Clock\\\\MockClock constructor expects DateTimeImmutable\\|string, DateTimeImmutable\\|false given\\.$#"
+			count: 2
+			path: ../tests/Unit/Adapter/SymfonyToOrisaiClockAdapterTest.php
+
+		-
 			message: """
 				#^Call to deprecated method move\\(\\) of class Orisai\\\\Clock\\\\FrozenClock\\:
 				Method move\\(\\) will be removed in orisai/clock v2\\.0\\. Use method sleep\\(\\) instead\\.$#
 			"""
 			count: 9
 			path: ../tests/Unit/FrozenClockTest.php
-
-		-
-			message: "#^Parameter \\#1 \\$now of class Symfony\\\\Component\\\\Clock\\\\MockClock constructor expects DateTimeImmutable\\|string, DateTimeImmutable\\|false given\\.$#"
-			count: 2
-			path: ../tests/Unit/Adapter/SymfonyToOrisaiClockAdapterTest.php

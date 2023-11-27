@@ -2,7 +2,11 @@
 
 namespace Tests\Orisai\Clock\Unit;
 
+use DateTime;
+use DateTimeImmutable;
+use DateTimeInterface;
 use DateTimeZone;
+use Generator;
 use Orisai\Clock\FrozenClock;
 use PHPUnit\Framework\TestCase;
 use function date_default_timezone_get;
@@ -38,6 +42,35 @@ final class FrozenClockTest extends TestCase
 		$clock = new FrozenClock(1.000_000_49);
 		$now = $clock->now()->format('U.u');
 		self::assertSame('1.000000', $now);
+	}
+
+	/**
+	 * @param int|DateTimeInterface $datetime
+	 *
+	 * @dataProvider provideTimestampVariants
+	 */
+	public function testTimestampVariants($datetime, int $timestamp): void
+	{
+		$clock = new FrozenClock($datetime);
+		self::assertSame($timestamp, $clock->now()->getTimestamp());
+	}
+
+	public function provideTimestampVariants(): Generator
+	{
+		yield [
+			1,
+			1,
+		];
+
+		yield [
+			DateTimeImmutable::createFromFormat('U', '1'),
+			1,
+		];
+
+		yield [
+			DateTime::createFromFormat('U', '1'),
+			1,
+		];
 	}
 
 	public function testTimeDoesNotChange(): void
