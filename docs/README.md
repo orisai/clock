@@ -90,6 +90,14 @@ use function Orisai\Clock\now;
 $currentTime = now(); // \DateTimeImmutable
 ```
 
+It is also possible to access clock statically
+
+```php
+use Orisai\Clock\ClockHolder;
+
+$clock = ClockHolder::getClock();
+```
+
 ## Clock
 
 ### System clock
