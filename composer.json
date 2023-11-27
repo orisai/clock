@@ -19,7 +19,7 @@
 			"homepage": "https://github.com/mabar"
 		}
 	],
-	"provides": {
+	"provide": {
 		"psr/clock-implementation": "1.0"
 	},
 	"require": {
