@@ -8,6 +8,7 @@
 		"orisai",
 		"psr",
 		"psr-20",
+		"symfony",
 		"time"
 	],
 	"type": "library",
