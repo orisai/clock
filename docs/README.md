@@ -17,6 +17,7 @@ Provides current time for runtime and controllable time for testing
 - [Clock adapters](#clock-adapters)
 	- [PSR to Orisai clock adapter](#psr-to-orisai-clock-adapter)
 	- [Symfony to Orisai clock adapter](#symfony-to-orisai-clock-adapter)
+	- [Orisai to Symfony clock adapter](#orisai-to-symfony-clock-adapter)
 - [Integrations and extensions](#integrations-and-extensions)
 
 ## Setup
@@ -204,6 +205,17 @@ use Orisai\Clock\Adapter\SymfonyToOrisaiClockAdapter;
 use Symfony\Component\Clock\NativeClock;
 
 $clock = new SymfonyToOrisaiClockAdapter(new NativeClock());
+```
+
+### Orisai to Symfony clock adapter
+
+Decorate any `Orisai\Clock\Clock` implementation to conform interface `Symfony\Component\Clock\ClockInterface`.
+
+```php
+use Orisai\Clock\Adapter\OrisaiToSymfonyClockAdapter;
+use Orisai\Clock\SystemClock;
+
+$clock = new OrisaiToSymfonyClockAdapter(new SystemClock());
 ```
 
 ## Integrations and extensions
