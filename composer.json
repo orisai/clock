@@ -63,5 +63,13 @@
 			"infection/extension-installer": true,
 			"phpstan/extension-installer": true
 		}
+	},
+	"scripts": {
+		"post-install-cmd": [
+			"php tests/install-optional-dependencies.php"
+		],
+		"post-update-cmd": [
+			"php tests/install-optional-dependencies.php"
+		]
 	}
 }
