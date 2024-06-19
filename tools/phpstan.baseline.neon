@@ -2,6 +2,11 @@ parameters:
 	ignoreErrors:
 		-
 			message: "#^Cannot call method modify\\(\\) on DateTimeImmutable\\|false\\.$#"
+			count: 2
+			path: ../src/FrozenClock.php
+
+		-
+			message: "#^Cannot call method setTimezone\\(\\) on DateTimeImmutable\\|false\\.$#"
 			count: 1
 			path: ../src/FrozenClock.php
 
