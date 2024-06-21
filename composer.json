@@ -24,7 +24,7 @@
 		"psr/clock-implementation": "1.0"
 	},
 	"require": {
-		"php": ">=7.4.0 <8.3.0",
+		"php": "7.4 - 8.3",
 		"orisai/exceptions": "^1.0.0",
 		"psr/clock": "^1.0.0"
 	},
