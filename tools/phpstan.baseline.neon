@@ -1,24 +1,40 @@
 parameters:
 	ignoreErrors:
 		-
-			message: "#^Cannot call method modify\\(\\) on DateTimeImmutable\\|false\\.$#"
+			rawMessage: 'Cannot call method modify() on DateTimeImmutable|false.'
+			identifier: method.nonObject
 			count: 1
 			path: ../src/FrozenClock.php
 
 		-
-			message: "#^Cannot call method setTimezone\\(\\) on DateTimeImmutable\\|false\\.$#"
+			rawMessage: 'Cannot call method setTimezone() on DateTimeImmutable|false.'
+			identifier: method.nonObject
 			count: 1
 			path: ../src/MeasurementClock.php
 
 		-
-			message: "#^Parameter \\#1 \\$now of class Symfony\\\\Component\\\\Clock\\\\MockClock constructor expects DateTimeImmutable\\|string, DateTimeImmutable\\|false given\\.$#"
+			rawMessage: 'Parameter #1 $now of class Symfony\Component\Clock\MockClock constructor expects DateTimeImmutable|string, DateTimeImmutable|false given.'
+			identifier: argument.type
 			count: 2
 			path: ../tests/Unit/Adapter/SymfonyToOrisaiClockAdapterTest.php
 
 		-
-			message: """
-				#^Call to deprecated method move\\(\\) of class Orisai\\\\Clock\\\\FrozenClock\\:
-				Method move\\(\\) will be removed in orisai/clock v2\\.0\\. Use method sleep\\(\\) instead\\.$#
-			"""
+			rawMessage: '''
+				Call to deprecated method move() of class Orisai\Clock\FrozenClock:
+				Method move() will be removed in orisai/clock v2.0. Use method sleep() instead.
+			'''
+			identifier: method.deprecated
 			count: 9
+			path: ../tests/Unit/FrozenClockTest.php
+
+		-
+			rawMessage: 'Parameter #1 $datetime of method Tests\Orisai\Clock\Unit\FrozenClockTest::testTimestampVariants() expects DateTimeInterface|int, DateTimeImmutable|false given.'
+			identifier: argument.type
+			count: 1
+			path: ../tests/Unit/FrozenClockTest.php
+
+		-
+			rawMessage: 'Parameter #1 $datetime of method Tests\Orisai\Clock\Unit\FrozenClockTest::testTimestampVariants() expects DateTimeInterface|int, DateTime|false given.'
+			identifier: argument.type
+			count: 1
 			path: ../tests/Unit/FrozenClockTest.php

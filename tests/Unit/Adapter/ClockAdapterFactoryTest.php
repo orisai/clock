@@ -6,13 +6,14 @@ use DateTimeImmutable;
 use Generator;
 use Orisai\Clock\Adapter\ClockAdapterFactory;
 use Orisai\Clock\Adapter\PsrToOrisaiClockAdapter;
+use Orisai\Clock\Adapter\SymfonyToOrisaiClockAdapter;
 use Orisai\Clock\FrozenClock;
 use Orisai\Clock\SystemClock;
 use PHPUnit\Framework\TestCase;
 use Psr\Clock\ClockInterface;
 use Symfony\Component\Clock\ClockInterface as SymfonyClock;
 use Symfony\Component\Clock\NativeClock;
-use function class_exists;
+use function interface_exists;
 
 final class ClockAdapterFactoryTest extends TestCase
 {
@@ -54,10 +55,10 @@ final class ClockAdapterFactoryTest extends TestCase
 			SystemClock::class,
 		];
 
-		if (class_exists(SymfonyClock::class)) {
+		if (interface_exists(SymfonyClock::class)) {
 			yield [
 				new NativeClock(),
-				NativeClock::class,
+				SymfonyToOrisaiClockAdapter::class,
 			];
 		}
 	}
